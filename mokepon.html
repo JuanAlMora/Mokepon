@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mokepon!!</title>
+        <script src="./js/mokepon.js"></script>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+
+    <body>
+        
+        <section id="seleccionarMascota">
+            <h1 class="titulo">WIZARD BATTLE</h1>
+            <div id="subtitulo">
+            <h2 class ="elegir">Elige a tu personaje:</h2>
+            </div>
+
+            <div class ="personajes">
+                <input type="radio" name="mascota" id="hipodoge" class="tarjetaPersonaje"/>
+                <label class="tarjetaMokepon" for="hipodoge">
+                    <p>Hipodoge</p>
+                    <img src="./imagen/hipodoge.png" alt="hipodoge" width ="220px" height="311px">
+                </label>
+                
+
+                <input type="radio" name="mascota" id="capipepo" class="tarjetaPersonaje"/>
+                <label  class="tarjetaMokepon" for="capipepo">
+                    <p>Capipepo</p>
+                    <img src="./imagen/capipepo.png" alt="capipepo" width ="220px" height="311px">
+                </label>
+                
+
+                <input type="radio" name="mascota" id="ratigueya" class="tarjetaPersonaje"/>
+                <label  class="tarjetaMokepon" for="ratigueya">
+                    <p>Ratigueya</p>
+                    <img src="./imagen/Ratigueya.png" alt="capipepo"width ="220px" height="311px">
+                </label>
+               
+
+            </div>
+          
+            <button id="botonMascota">Seleccionar</button>
+        </section>
+
+        <section id="seleccionarAtaque">
+            <h1 class="titulo">WIZARD BATTLE</h1>
+            <h2 class="elegir">Elige  tu ataque:</h2>
+
+            <div>
+                <button id="botonFuego" class="botonAtaque">Fuego 🔥</button>
+                <button id="botonAgua" class="botonAtaque">Agua 💧</button>
+                <button id="botonTierra" class="botonAtaque">Tierra 🌱</button>
+            </div>
+
+
+       
+            <div id="mensajes">
+                <p id ="resultado">Hora del combate!!!</p>
+                <section id="reiniciar">
+                    <button id="botonReiniciar">Reiniciar</button>
+                </section>
+            </div>
+
+         
+            
+        <div class="ataques">
+            <div id ="vidas">
+                <div id ="vid1">
+                    <p style = "text-align: center">Tu personaje <span id="mascotaJugador">Capipepo</span> tiene <span id="vidasJugador"> 3</span> vidas</p>
+                    <p><span id="imagenJugador"><img src="./imagen/hipodoge.png" alt="hipodoge" width ="220px" height="311px"></span></p>
+                   
+                </div>
+                
+
+                <div id ="vid2">
+                    <p style = "text-align: center">El personaje <span id="mascotaEnemigo">Ratigueya</span> enemigo tiene <span id="vidasEnemigo"> 3</span> vidas</p>
+                    <p><span id="imagenEnemigo"><img src="./imagen/hipodoge.png" alt="hipodoge" width ="220px" height="311px" class="imgEnemigo"></span></p>
+                    
+                </div>
+            </div> 
+        </div>
+        
+        
+        <div id ="ataques2">
+
+            <div id ="ataquesJugador"></div>
+            <div id ="ataquesEnemigo"></div>
+
+        </div>
+            
+           
+
+               
+            
+      
+           
+
+        </section>
+       
+    </body>
+
+</html>
+
