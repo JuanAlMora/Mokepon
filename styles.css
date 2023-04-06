@@ -61,17 +61,25 @@ body {
 .tarjetaMokepon:active {
     box-sizing: border-box;
     border: solid 5px #ffffff;
+   
 }
 
-input:checked+label{
-    box-sizing: border-box;
-    border: solid 5px #ffffff;
-    padding: 5px;
-}
+
 
 input.tarjetaPersonaje {
     display: none;
 }
+
+
+input:checked + label{
+    box-sizing: border-box;
+    border: solid 5px #ffffff;
+    padding: 5px;
+    background-color: rgba(44, 4, 4, 0.801);
+    color:aliceblue;
+    
+}
+
 
 .personajes{
     display: flex;
@@ -93,6 +101,7 @@ input.tarjetaPersonaje {
 #botonMasocta:hover{
     border:solid 2px #00000000;
 }
+
 
 #subtitulo {
     color: orange;
