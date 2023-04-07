@@ -16,14 +16,17 @@ const sectionMensajes = document.getElementById('resultado')
 const ataquesJugador = document.getElementById('ataquesJugador')
 const ataquesEnemigo = document.getElementById('ataquesEnemigo')
 const contenedorTarjetas = document.getElementById("contenedorPersonajes")
+const contenedorAtaques = document.getElementById("botonesAtaques")
 
 
 let mokepones = []
 let inputHipodoge
 let inputCapipepo 
 let inputRatigueya 
+let mascotaJugador
 let ataqueJugador 
 let ataqueEnemigo
+let ataquesMokepon
 let resultado
 let opcionMokepones
 let vidasEnemigo = 3
@@ -105,38 +108,59 @@ function seleccionarMascotaJugador(){
 
     if(inputHipodoge.checked){
         spanMascotaJugador.innerHTML = inputHipodoge.id
-        spanImagenJugador.innerHTML = "<img src=\"./imagen/hipodoge.png\" width=\"130px\" width=\"600px\">"
+        mascotaJugador = inputHipodoge.id
+        spanImagenJugador.innerHTML = `<img src=${hipodoge.foto}  width= "130px" height="250px">`
         
     } else if(inputCapipepo.checked){
         spanMascotaJugador.innerHTML = inputCapipepo.id
-        spanImagenJugador.innerHTML = "<img src=\"./imagen/capipepo.png\" width=\"110px\" width=\"380px\">"
+        mascotaJugador = inputCapipepo.id
+        spanImagenJugador.innerHTML = `<img src=${capipepo.foto}  width= "130px" height="250px">`
     } else if(inputRatigueya.checked){
         spanMascotaJugador.innerHTML = inputRatigueya.id
-        spanImagenJugador.innerHTML = "<img src=\"./imagen/Ratigueya.png\" width=\"150px\" width=\"680px\">"
+        mascotaJugador = inputRatigueya.id
+        spanImagenJugador.innerHTML = `<img src=${ratigueya.foto}  width= "130px" height="250px">`
     } else{
         alert("SELECCIONA UNA MASCOTA")
         sectionSeleccionarMascota.style.display = 'flex' 
         sectionSeleccionarAtaque.style.display = 'none'
     }
+
+    extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()    
+}
+
+function extraerAtaques(mascotaJugador){
+    let ataques = []
+
+    mokepones.forEach(mokepon => {
+        if(mascotaJugador == mokepon.nombre){
+            ataques = mokepon.ataques
+        }
+    })
+
+    // for (let i = 0; i < mokepones.length; i++) {
+    //     if(mascotaJugador == mokepones[i].nombre){
+    //         ataques = mokepones[i].ataques
+    // } 
+    
+    mostrarAtaques(ataques)
+}
+
+function mostrarAtaques(ataques){
+    ataques.forEach(ataque => {
+        ataquesMokepon = `<button id=${ataque.id} class="botonAtaque">${ataque.nombre}</button>`
+
+        contenedorAtaques.innerHTML += ataquesMokepon
+    })
+
+    
 }
 
 function seleccionarMascotaEnemigo(){
 
-    let ataqueAleatorio = aleatorio(1,3)
-    
-
-    if(ataqueAleatorio ==1){
-        spanMascotaEnemigo.innerHTML = "Hipodoge"
-        spanImagenEnemigo.innerHTML = "<img src=\"./imagen/hipodoge.png\" width=\"130px\" width=\"600px\"class=\"imgEnemigo\">"
-        
-    }else if(ataqueAleatorio == 2){
-        spanMascotaEnemigo.innerHTML = "Capipepo"
-        spanImagenEnemigo.innerHTML = "<img src=\"./imagen/Capipepo.png\" width=\"110px\" width=\"380px\" class=\"imgEnemigo\">"
-    }else{
-        spanMascotaEnemigo.innerHTML = "Ratigueya"
-        spanImagenEnemigo.innerHTML = "<img src=\"./imagen/Ratigueya.png\" width=\"150px\" width=\"680px\"class=\"imgEnemigo\">"
-    }
+    let ataqueAleatorio = aleatorio(0, mokepones.length -1)
+        spanMascotaEnemigo.innerHTML = mokepones[ataqueAleatorio].nombre
+        spanImagenEnemigo.innerHTML = `<img src=${mokepones[ataqueAleatorio].foto}  width= "130px" height="250px" class="imgEnemigo">`
 }
 
 function ataqueFuego(){
