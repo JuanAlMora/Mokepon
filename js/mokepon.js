@@ -4,10 +4,7 @@ const botonAgua = document.getElementById("botonAgua")
 const sectionReiniciar = document.getElementById("reiniciar")
 const botonTierra = document.getElementById("botonTierra")
 const sectionSeleccionarAtaque = document.getElementById("seleccionarAtaque")
-const botonReiniciar = document.getElementById("botonReiniciar")
-const inputHipodoge = document.getElementById("hipodoge")
-const inputCapipepo = document.getElementById("capipepo")
-const inputRatigueya = document.getElementById("ratigueya")   
+const botonReiniciar = document.getElementById("botonReiniciar") 
 const spanMascotaJugador = document.getElementById("mascotaJugador")
 const spanImagenJugador = document.getElementById("imagenJugador")
 const sectionSeleccionarMascota = document.getElementById("seleccionarMascota")
@@ -18,11 +15,17 @@ const spanVidasEnemigo = document.getElementById("vidasEnemigo")
 const sectionMensajes = document.getElementById('resultado')
 const ataquesJugador = document.getElementById('ataquesJugador')
 const ataquesEnemigo = document.getElementById('ataquesEnemigo')
+const contenedorTarjetas = document.getElementById("contenedorPersonajes")
+
 
 let mokepones = []
+let inputHipodoge
+let inputCapipepo 
+let inputRatigueya 
 let ataqueJugador 
 let ataqueEnemigo
 let resultado
+let opcionMokepones
 let vidasEnemigo = 3
 let vidasJugador = 3
 
@@ -65,12 +68,30 @@ ratigueya.ataques.push(
     {nombre: "Agua 💧", id: "botonAgua"},
 )
 
+mokepones.push(hipodoge, capipepo, ratigueya)
+
+
+
 function iniciarJuego(){    
     sectionSeleccionarAtaque.style.display = 'none'
     sectionReiniciar.style.display = 'none'
 
-    botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
+    mokepones.forEach(mokepon => {
+        opcionMokepones = `<input type="radio" name="mascota" id=${mokepon.nombre} class="tarjetaPersonaje"/>
+        <label class="tarjetaMokepon" for=${mokepon.nombre}>
+            <p>${mokepon.nombre}</p>
+            <img src=${mokepon.foto} alt=${mokepon.nombre} width ="220px" height="311px">
+        </label>`
 
+        contenedorTarjetas.innerHTML += opcionMokepones
+
+        inputHipodoge = document.getElementById("Hipodoge")
+        inputCapipepo = document.getElementById("Capipepo")
+        inputRatigueya = document.getElementById("Ratigueya")  
+        
+    })
+
+    botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador)
     botonFuego.addEventListener("click", ataqueFuego)
     botonAgua.addEventListener("click", ataqueAgua)
     botonTierra.addEventListener("click", ataqueTierra)
@@ -79,31 +100,25 @@ function iniciarJuego(){
 
 function seleccionarMascotaJugador(){
 
+    sectionSeleccionarMascota.style.display = 'none' 
+    sectionSeleccionarAtaque.style.display = 'flex'
+
     if(inputHipodoge.checked){
-        spanMascotaJugador.innerHTML = "Hipodoge"
+        spanMascotaJugador.innerHTML = inputHipodoge.id
         spanImagenJugador.innerHTML = "<img src=\"./imagen/hipodoge.png\" width=\"130px\" width=\"600px\">"
         
     } else if(inputCapipepo.checked){
-        spanMascotaJugador.innerHTML = "Capipepo"
+        spanMascotaJugador.innerHTML = inputCapipepo.id
         spanImagenJugador.innerHTML = "<img src=\"./imagen/capipepo.png\" width=\"110px\" width=\"380px\">"
     } else if(inputRatigueya.checked){
-        spanMascotaJugador.innerHTML = "Ratigueya"
+        spanMascotaJugador.innerHTML = inputRatigueya.id
         spanImagenJugador.innerHTML = "<img src=\"./imagen/Ratigueya.png\" width=\"150px\" width=\"680px\">"
     } else{
         alert("SELECCIONA UNA MASCOTA")
+        sectionSeleccionarMascota.style.display = 'flex' 
         sectionSeleccionarAtaque.style.display = 'none'
-        sectionReiniciar.style.display = 'none'
     }
-    
-    botonMascotaJugador.disabled = true
-    inputHipodoge.disabled = true
-    inputRatigueya.disabled = true
-    inputCapipepo.disabled = true
-
-    seleccionarMascotaEnemigo() 
-    sectionSeleccionarMascota.style.display = 'none' 
-    sectionSeleccionarAtaque.style.display = 'flex'
-    
+    seleccionarMascotaEnemigo()    
 }
 
 function seleccionarMascotaEnemigo(){
